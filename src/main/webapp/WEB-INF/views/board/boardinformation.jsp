@@ -41,7 +41,7 @@
 				<table id="example" class="display" style="width: 100%">
 					<thead>
 						<tr>
-							<th>게시글 번호</th><th>작성자</th><th>제목</th><th>내 용</th><th>조회 수</th><th>작성일</th><th>삭제</th>
+							<th>게시글 번호</th><th>작성자</th><th>제목</th><th>내 용</th><th>조회 수</th><th>작성일</th><!-- <th>삭제</th> -->
 						</tr>
 					</thead>
 					<tbody id="listArea">
@@ -69,7 +69,7 @@
 						var html = "";
 						result.forEach(function(item) {
 							html += "<tr> <td>"+item.idx+"</td><td>"+item.memId+"</td><td><a style='text-decoration:none;' href = 'view2?idx=" + item.idx
-									+ "'>" + item.title + "</a></td><td>"+item.contents+"</td><td>"+item.hits+"</td><td>"+item.writedate+"</td><td><a href='/board/deleteboard2/"+item.idx+"' style='text-decoration:none;'>&#10060;</a></td>"
+									+ "'>" + item.title + "</a></td><td>"+item.contents+"</td><td>"+item.hits+"</td><td>"+item.writedate+"</td>"
 						})
 						$("#listArea").append(html)
 						$('#example').DataTable();
@@ -79,6 +79,8 @@
 					location.href = "write2";
 				})
 			});
+	/* <td><a href='/board/deleteboard2/"+item.idx+"' style='text-decoration:none;'>&#10060;</a></td> */
+	
 	/* 
 	$(document).on('click', '#btnSearch', function(e){
 

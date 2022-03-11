@@ -16,8 +16,9 @@
     <select id="getActorCast" resultType="com.project.board.model.ActorCastVO" parameterType="string">
         SELECT a.actorName, a.actorProfile, c.roleName FROM actor a, muscCast c WHERE a.actorNo = c. actorNo AND c.muscNo= #{muscNo}
     </select>
+
     <select id="getAllMusical" resultType="com.project.board.model.MusicalVO" parameterType="string">
-        select * from musical order by musicalVote desc
+        select * from musical 
     </select>
     
     <select id="getMusicalAllList" resultType="com.project.board.model.MusicalVO" parameterType="string">
@@ -34,9 +35,31 @@
   		VALUES (#{muscNo}, #{muscName}, #{muscHashtag}, #{muscPlace},
 				#{muscPlaceLink},#{muscStartDate}, #{muscEndDate}, #{muscQuote},
                 #{muscReqTime}, #{muscSynop}, #{muscGenre}, #{muscImg},
-                #{muscInfo_1}, #{muscInfo_2}, #{muscInfo_3}, #{muscYoutube})
+                #{muscInfo_1}, #{muscInfo_2}, #{muscInfo_3}, #{muscYoutube},0,#{location})
   	</insert> 
 
+	<delete id="deleteMusical" parameterType="string">
+		DELETE FROM musical WHERE  muscNo = #{muscNo}
+	</delete>
+	
+	<select id="muscNoCheck" parameterType="string" resultType="integer">
+		SELECT count(muscNo) FROM musical WHERE muscNo = #{muscNo}
+	</select>
+	
+	<update id="updateMusical" parameterType="com.project.board.model.MusicalVO">
+        UPDATE musical 
+        SET muscNo = #{muscNo}, muscName = #{muscName}, muscHashtag = #{muscHashtag},
+        			 muscPlace = #{muscPlace}, muscPlaceLink = #{muscPlaceLink},
+        			 muscStartDate = #{muscStartDate}, muscEndDate = #{muscEndDate}, muscReqTime = #{muscReqTime},
+        			 muscSynop = #{muscSynop}, muscGenre = #{muscGenre}, muscImg = #{muscImg}, 
+        			 muscInfo_1 = #{muscInfo_1}, muscInfo_2 = #{muscInfo_2}, muscInfo_3 = #{muscInfo_3}, 
+        			 muscYoutube = #{muscYoutube}, location = #{location} WHERE muscNo = #{muscNo}
+    </update>
+	
+	<!-- Actor -->
+	
+	
+	
 </mapper>
   
   

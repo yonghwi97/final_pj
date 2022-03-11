@@ -8,6 +8,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="<c:url value='/css/board.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/css/board1.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/css/board2.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/js/replycheck.js'/>"></script>
 </head>
 <jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true' />
@@ -39,11 +41,12 @@
 <div class="viewcontainer" style="text-align:left;">
 	<div class="row">
 		<div class="col-sm-12" style="text-align:right;">
-	     <h2 style="text-align:left;" id = "title" ></h2>
-	     <hr><hr>
-	     <button type="button" class="btn" onclick="location.href='javascript:deleteCheck();' ">게시글 삭제</button>
-	     <button type="button" class="btn" onclick="location.href='javascript:update();' ">게시글 수정</button> <br>
-
+	     <h2 class="titlefont" style="text-align:left;" id = "title" ></h2>
+	     
+	     <div id="buttenArea">
+				<button type="button" class="btn" onclick="location.href='javascript:deleteCheck();' ">게시글 삭제</button>
+           		<button type="button" class="btn" onclick="location.href='javascript:update();' ">게시글 수정</button> 
+			</div>
 		</div>
 	</div> 
 	<div class="row">
@@ -151,7 +154,11 @@ function drawReply(replys) {
   $.ajax({url: "boardView3?idx="+IDX, 
 	success: function(result){
 		idx=result.idx;
-	  $("#image").append('<img src="/images/'+result.image+'"  style="width: 400px;" onerror="this.style.display=\'none\';" />');
+		if(result.memId != "${sessionScope.sid1}"){
+			// alert("숨기기")
+			$('#buttenArea').css("display", "none");
+		}
+		$("#image").append('<img src="<c:url value="/images1/'+result.image+'"/>"  style="width: 400px;" onerror="this.style.display=\'none\';" />');
 	  $("#title").text(result.title);
 	  $("#memID").text(result.memID)
 	  $("#contents").text(result.contents);

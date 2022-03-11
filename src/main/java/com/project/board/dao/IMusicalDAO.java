@@ -21,5 +21,11 @@ public interface IMusicalDAO {
 
 	public ArrayList<MusicalVO> getMusicalAllList();
 
+	public int deleteMusical(String muscNo);
+
+	public int muscNoCheck(String muscNo);
+
+	public int updateMusical(MusicalVO musicalVO);
+
 	
 }

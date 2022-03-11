@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.board.model.BoardVO;
+import com.project.board.model.MemberVO;
 import com.project.board.model.ReplyVO;
 import com.project.board.service.BoardService4;
+import com.project.board.service.MemberService;
 
 @Controller
 public class BoardController4 {
@@ -30,6 +32,9 @@ public class BoardController4 {
 	    private BoardService4 s;
 		private File none;
 	    
+		@Autowired
+	    MemberService memberService;
+		
 	    @RequestMapping(value="/board4", method=RequestMethod.GET)
 	    public String board4() {
 	    	
@@ -87,7 +92,7 @@ public class BoardController4 {
 	            @RequestParam("contents")String contents, String hits,Date writedate, String memId) throws IllegalStateException, IOException {
 	        
 	    	//1. 파일 저장 경로 설정 : 실제 서비스 되는 위치(프로젝트 외부에 저장)
-			String uploadPath="C:/springWorkspace/upload/";
+			String uploadPath="/upload/";
 			
 			//2. 원본 파일 이름 알아오기
 			String originalFileName=file.getOriginalFilename();
@@ -101,7 +106,7 @@ public class BoardController4 {
 			model.addAttribute("originalFileName",originalFileName);
 			
 	        s.addBoard4(new BoardVO(0, title, contents, file.getOriginalFilename(), hits,writedate,memId));
-	        return "board/board4";
+	        return "redirect:./board4";
 	    }
 	    
 		/*
@@ -120,7 +125,15 @@ public class BoardController4 {
 		 */
 
 	    @RequestMapping(value="/view4", method=RequestMethod.GET)
-	    public String view4() {
+	    public String view4(Model model,HttpSession session) {
+	    	
+	    	String sid=(String)session.getAttribute("sid1");
+	        System.out.println(sid);
+	        MemberVO memberList = memberService.getMember(sid);
+			model.addAttribute("memberList", memberList);
+	        
+	    	
+	    	
 	        return "board/view4";
 	    }
 		

@@ -10,6 +10,22 @@
 		<title>티켓북</title>
 		<script src="<c:url value='/js/jquery-3.6.0.min.js'/>"></script>
 		<script src="<c:url value='/js/ticketDetailView.js'/>"></script>
+		
+		 <script>
+
+	function deleteticket(no) {
+	  if (confirm("티켓을 삭제하시겠습니까??")){    //확인
+		  
+		     location.href='/ticketbook/deleteticketform/' + no;
+
+		 }else{   //취소
+
+		     return false;
+
+		 }
+	} 
+	
+</script> 
 	</head>
 	
 	<body></body>
@@ -20,7 +36,7 @@
     <!-- 티켓북 -->
 
     <div><h1>${sessionScope.sid1} 님의 티켓북</h1></div>
-	<button type="button" onclick="location.href='/ticketbook/insertticket'" class = "addbtn">티켓추가</button>
+	<button type="button" onclick="location.href='/ticketbook/ticketInsertForm'" class = "addbtn">티켓추가</button>
 
 
     <%--티켓 한 개의 이미지 보이는 div -> forEach로 반복 --%>
@@ -51,10 +67,11 @@
       							<div>캐스팅 : ${ticketbook.casting }<br></div>
                             	<div>후기 : ${ticketbook.review } <br></div>
                             	<div>
-                            		<button type="button" onclick=" location.href='/ticketbook/deleteticketform/${ticketbook.no}'" id = "deletebtn"  class="deletebtn">티켓삭제</button> 
+                            		<button type="button" onclick=" deleteticket(${ticketbook.no})" id = "deletebtn"  class="deletebtn">티켓삭제</button> 
                             		 <div>
 							 			<button type="button" onclick="location.href='/ticketbook/updateticketform/${ticketbook.no}'" class="editbtn">티켓수정</button>
                            			 </div>
+                           			 <a href="/clovaOCRForm">OCR</a><br><br>
                             	</div>
                             </div>
                         </td>
@@ -73,23 +90,5 @@
     <jsp:include page="/WEB-INF/views/layout/bottom.jsp" flush='true'/>
 
 </div>
-<!-- <script>
 
-	function deleteticket() {
-	  if (confirm("티켓을 삭제하시겠습니까??")){    //확인
-		  
-		     location.href='/ticketbook/deleteticketform/${ticketbook.no}';
-
-		 }else{   //취소
-
-		     return false;
-
-		 }
-	} 
-	/* $(document).ready(function() {
-	    $("#deletebtn").click(function() {
-	        $("#popUp").fadeIn();
-	        $("#modal").fadeIn();
-	    }); */
-</script> -->
 </html>

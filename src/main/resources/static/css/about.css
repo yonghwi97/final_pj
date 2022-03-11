@@ -24,10 +24,17 @@
     position: absolute;
     top: 500px;
     width: 380px;
-    padding: 50px;
+    padding: 30px;
     background-color: #FFFFFF;
-    font-size: 22px;
     font-family: GowunDodum-Regular, serif;
     border: 13px solid #021726;
     left: 90px;
+}
+
+.aboutInfo p{
+    text-align: left;
+    color: #444;
+    letter-spacing: 0.05em;
+    font-size: 1.1em;
+    margin: 1.5em;
 }

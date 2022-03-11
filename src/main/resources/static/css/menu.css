@@ -1,50 +1,83 @@
 @charset "utf-8";
 
-#headerMenuBox{
+#headerMenuBox {
     text-align: right;
     height: 80px;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
     margin-bottom: 30px;
 }
 
-.header_logo{
+.header_logo {
     line-height: 80px;
     margin-left: 10px;
     font-size: 18px;
 }
 
-.header_logo img{
+.header_logo img {
     width: 250px;
 }
 
-#headerMenuBox a{
+#headerMenuBox a {
     color: black;
-    /*font-weight: bold;*/
+    font-size: 18px;
+    font-family: GowunDodum-Regular, serif;
+    font-weight: bold;
     margin-right: 15px;
 }
 
-.headerMenu{
+.headerMenu {
     line-height: 100px;
 }
 
 
-#logoBox{
+#logoBox {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 20px;
 }
 
-#logoImage{
+#logoImage {
     width: 1200px;
 }
 
-#headerMenuBox li{
+#headerMenuBox li {
     position: relative;
     display: inline-block;
     line-height: 80px;
     font-size: 18px;
+}
+
+
+#dropMain > li > a {
+    display: block;
+}
+
+#dropSub {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+}
+
+#dropSub > li {
+    height: 40px;
+    line-height: 40px;
+}
+
+#dropMain > li:hover #dropSub {
+    opacity: 0.7;
+    visibility: visible;
+    background-color: #FFFFFF;
+}
+
+#dropMain > li > a:hover #dropSub{
+    opacity: 1;
 }
 
 ul {
@@ -66,7 +99,7 @@ a {
     width: 180px;
 }
 
-.footerBox{
+.footerBox {
     text-align: center;
     background-color: #021726;
     color: #FFFFFF;
@@ -80,7 +113,7 @@ a {
     display: inline-flex;
 }
 
-.footerMutroduce{
+.footerMutroduce {
     display: inline-block;
     padding: 10px;
     width: 330px;

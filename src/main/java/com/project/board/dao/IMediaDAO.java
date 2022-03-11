@@ -16,6 +16,7 @@ public interface IMediaDAO {
 
     public int voteUp(String actorNo);
 
-
-
+    public int voteCount(String memId);
+    
+    public int voteCountB(String memId);
 }

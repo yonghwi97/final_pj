@@ -901,7 +901,6 @@ A HORIZONTAL event
     flex-shrink: 1;
     min-width: 0; /* important for allowing to shrink all the way */
     overflow: hidden;
-    font-weight: bold;
   }
 .fc-daygrid-dot-event:hover,
   .fc-daygrid-dot-event.fc-event-mirror {

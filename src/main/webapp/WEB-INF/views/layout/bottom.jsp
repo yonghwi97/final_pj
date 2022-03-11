@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/chatbot.css'/>">
 </head>
 		<!-- 챗봇 섹션 display none -->
-		<a id="openPop"><img id="chatBtn" src="<c:url value="/images/chatBtn.png" />" width="80" height="70"></a>
+		<a id="openPop"><img id="chatBtn" src="<c:url value="/images/chatBtn.png" />" width="75" height="75"></a>
 		<div id= "modal"> 
 		</div>
 		<div id="popUp">

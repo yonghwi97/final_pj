@@ -12,4 +12,11 @@ import com.project.board.model.CalendarVO;
 public interface ICalendarService {
     public List<Map<String, Object>> calenList();
 
+    ArrayList<CalendarVO> getAllPlan();
+
+    CalendarVO detailPlan(int calNo);
+
+    void insertSchedule(CalendarVO calendarVO);
+
+    void updateSchedule(CalendarVO calendarVO);
 }

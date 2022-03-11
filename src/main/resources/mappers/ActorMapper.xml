@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.project.board.dao.IActorDAO">
+    <insert id="insertActor"  parameterType="com.project.board.model.VoteVO">
+  		INSERT INTO actor
+  		VALUES (#{actorNo}, #{actorName}, #{actorProfile},0)
+  	</insert> 
+
+	<delete id="deleteActor" parameterType="string">
+		DELETE FROM actor WHERE  actorNo = #{actorNo}
+	</delete>
+	
+	<select id="actorNoCheck" parameterType="string" resultType="integer">
+		SELECT count(actorNo) FROM actor WHERE actorNo = #{actorNo}
+	</select>
+	
+	
+</mapper>
+  
+  

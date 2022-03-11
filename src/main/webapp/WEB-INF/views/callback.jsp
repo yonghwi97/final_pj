@@ -24,7 +24,7 @@
     
 	let body = $('body');
 	body.append('로그인 성공!');  
-	body.append('<h4>이메일:'+email+'</h4>');
+	body.append('<h4>이메일:'+email+'</h4>');  
 	body.append('<h4>이름:'+name+'</h4>');
 	body.append('<h4>전화번호:'+mobile+'</h4>');
   }

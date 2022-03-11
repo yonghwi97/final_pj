@@ -52,6 +52,18 @@ public class MusicalService implements IMusicalService{
 	public ArrayList<MusicalVO> getMusicalAllList() {
 		return dao.getMusicalAllList();
 	}
+
+	public int deleteMusical(String muscNo) {
+		return dao.deleteMusical(muscNo);
+	}
+
+	public int muscNoCheck(String muscNo) {
+		return dao.muscNoCheck(muscNo);
+	}
+
+	public int updateMusical(MusicalVO musicalVO) {
+		return dao.updateMusical(musicalVO);
+	}
     
 
 }

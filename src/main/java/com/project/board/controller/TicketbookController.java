@@ -111,14 +111,14 @@ public class TicketbookController {
     public String insertform() {
 
 
-        return "ticketbook/ticketbook";
+        return "ticketbook/ticketInsertForm";
     }
 
 
     @RequestMapping("/ticketbook/insertticket") //추가 페이지
     public String insertticket(TicketbookVO ticketbookVo) {
         service.insertticket(ticketbookVo);
-        return "ticketbook/ticketInsertForm";
+        return "redirect:../ticketDetailView";
     }
     
     @RequestMapping("/ticketbook/updateticketform/{no}") // 수정할페이지 번호
@@ -131,13 +131,14 @@ public class TicketbookController {
     @RequestMapping("/ticketbook/updateticket") //수정 페이지
     public String updateticket(TicketbookVO ticketbookVo) {
         service.updateticket(ticketbookVo);
+        
         return "redirect:../ticketDetailView";
     }
     
     @RequestMapping("/ticketbook/deleteticketform/{no}") // 삭제할 페이지 번호
 	public String deleteform( @PathVariable("no") String no, Model model) {
     	service.deleteticket(no );
-		return "redirect:../ticketDetailView"; //DB저장 컨트롤러
+		return "redirect:../../ticketDetailView"; //DB저장 컨트롤러
 	}
 	
 }

@@ -42,10 +42,23 @@
 	<div class="row">
 		<div class="col-sm-12" style="text-align:right;">
 	     <h2 class="titlefont" style="text-align:left;" id = "title" ></h2>
-	     <h2 style="text-align:left;" id="memID"></h2>
-	     <button type="button" class="btn" onclick="location.href='javascript:deleteCheck();' ">게시글 삭제</button>
-	     <button type="button" class="btn" onclick="location.href='javascript:update();' ">게시글 수정</button> <br>
+	     <!-- <h2 style="text-align:left;" id="memID"></h2> -->
 
+				
+			<div id="buttenArea">
+				<button type="button" class="btn" onclick="location.href='javascript:deleteCheck();' ">게시글 삭제</button>
+           		<button type="button" class="btn" onclick="location.href='javascript:update();' ">게시글 수정</button> 
+			</div>
+		
+		<%-- <c:forEach items="${memberList}" var="mem" varStatus="status">	
+			<c:if test="${sessionScope.sid1 eq mem.memId}">    	   
+           	   <button type="button" class="btn" onclick="location.href='javascript:deleteCheck();' ">게시글 삭제</button>
+           	   <button type="button" class="btn" onclick="location.href='javascript:update();' ">게시글 수정</button> 
+        	 </c:if>
+		</c:forEach> --%>
+		
+			
+			
 		</div>
 	</div> 
 	<div class="row">
@@ -152,11 +165,19 @@ function drawReply(replys) {
  var idx;
   $.ajax({url: "boardView?idx="+IDX, 
 	success: function(result){
+		console.log("result.memId" + result.memId + " ${sessionScope.sid1}");
+		if(result.memId != "${sessionScope.sid1}"){
+			// alert("숨기기")
+			$('#buttenArea').css("display", "none");
+		}
+		
 		idx=result.idx;
-	  $("#image").append('<img src="/images/'+result.image+'"  style="width: 400px;" onerror="this.style.display=\'none\';" />');
+	  $("#image").append('<img src="<c:url value="/images1/'+result.image+'"/>"  style="width: 400px;" onerror="this.style.display=\'none\';" />');
 	  $("#title").text(result.title);
 	  $("#memID").text(result.memId)
 	  $("#contents").text(result.contents);
+	  
+
    }});
 
   $.ajax({url: "replyList?idx="+IDX, success: function(replys){

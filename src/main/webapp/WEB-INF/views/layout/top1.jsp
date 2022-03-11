@@ -18,6 +18,7 @@
 	<script src="<c:url value='/js/boardmenu.js'/>"></script>
 </head>
 <body>
+<%--수정 test--%>
 
 <!-- 전체 컨텐츠 -->
 <div id="wrap">
@@ -25,51 +26,34 @@
     <div id="headerMenuBox">
         <div class="header_logo"><a href="/"><img src="<c:url value='/images/header_logo.png' />"></a></div>
         <div class="headerMenu">
-            <ul>
+            <ul id="dropMain">
                 <%--로그인 처리 전에 보여줄 부분--%>
 
-                    <li><a href="<c:url value='/about' />">About</a> </li>
-                    <li><a href="<c:url value='/detailView/1' />">Musical</a> </li>
-                    <li><a href="<c:url value='/vote' />">Ranking</a> </li>
-                    <li><a href="<c:url value='/board' />">Community</a> </li>
-                    <li><a href="<c:url value='/hall' />">Theather</a> </li>
+                <li><a href="<c:url value='/about' />">About</a> </li>
+                <li><a href="<c:url value='/musicalAllgenre' />">Musical</a></li>
+                <li><a href="<c:url value='/vote' />">Ranking</a> </li>
+                <li>
+                    <a href="<c:url value='/board' />">Community ▾</a>
+                    <ul id="dropSub">
+                        <li><a href="<c:url value="/board3" />">배우 게시판</a></li>
+                        <li><a href="<c:url value="/board4" />">뮤지컬 게시판</a></li>
+                        <li><a href="<c:url value="/boardinformation" />">포도알 이야기</a></li>
+                        <li><a href="<c:url value="/board" />">공연 요청</a></li>
+                    </ul>
+                </li>
+                <li><a href="<c:url value='/hall' />">Theater</a> </li>
                 <c:if test="${empty sessionScope.sid}">
                     <li><a href="<c:url value='/loginForm' />">Sign In</a> </li>
                 </c:if>
                 <%--로그인 처리 후에 보여줄 부분--%>
                 <c:if test="${not empty sessionScope.sid}">
-                    <li><a href="<c:url value='/logout' />">로그아웃</a> </li>
-                    <li><a href="<c:url value='/ticketbook/${sid.memId}'/>">마이페이지</a> </li>
+                    <li><a href="<c:url value='/logout' />">Sign Out</a> </li>
+                    <li><a href="<c:url value='/ticketbook/${sid.memId}'/>">My Page</a> </li>
+                    <li><a href="<c:url value='/adminPage'/>">Admin</a> </li>
                 </c:if>
             </ul>
         </div>
     </div>
-
-<nav id="boardmenu">
-		<span style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;
-			</span>
-		<div class="menu-btn">
-			<div class="line line--1"></div>
-			<div class="line line--2"></div>
-			<div class="line line--3"></div>
-		</div>
-		<div class="nav-links">
-			<div id="mySidenav" class="sidenav">
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<ul id="menuGroup">
-					<li class="menu link"><a href="/board">공연 요청</a></li>
-					<li class="menu link"><a href="#">장르별 추천</a>
-						<ul class="hide">
-							<li class="subMenu"><a href="<c:url value='/board3'/>">배우 별</a></li>
-							<li class="subMenu"><a href="<c:url value='/board4'/>">뮤지컬 별</a></li>
-						</ul></li>
-					<li class="menu link"><a href="/boardinformation">정보 게시판</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-
 
 </body>
 </html>

@@ -45,7 +45,7 @@
     
     <select id="getBoardOne" resultType="com.project.board.model.BoardVO">
         SELECT
-        idx, title, image, contents
+        idx, title, image, contents, memId
         FROM
         tb_board
         WHERE

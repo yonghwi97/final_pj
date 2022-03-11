@@ -6,7 +6,12 @@ public class VoteVO {
     private String actorProfile;
     private int actorVote;
 
-    public String getActorNo() {
+
+	public void setActorVote(int actorVote) {
+		this.actorVote = actorVote;
+	}
+
+	public String getActorNo() {
         return actorNo;
     }
 

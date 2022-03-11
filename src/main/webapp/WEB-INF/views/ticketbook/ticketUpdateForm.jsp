@@ -27,7 +27,7 @@
 		<form method = "post" action="/ticketbook/updateticket" class="form">
 		<table border= "0" class = "table">
 			<tr>
-		 		<td>번호 : </td> <td><input type="text" id="no" name="no" value="${ticketbook.no}"><br></td>
+		 		<td></td> <td><input type="hidden" id="no" name="no" value="${ticketbook.no}"><br></td>
 		 	</tr>
 			<tr>
 		 		<td>아이디 : </td> <td><input type="text" id="memID" name="memID" value="${sessionScope.sid1}" readonly><br></td>

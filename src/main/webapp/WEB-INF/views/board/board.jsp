@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>MUTRODUCE</title>
+<title>MUTRODUCE</title> 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,8 +29,6 @@
 </head>
 <jsp:include page="/WEB-INF/views/layout/top1.jsp" flush='true' />
 
-
-
 <body link="blue" vlink="blue" alink="blue">
 	<div class="boardcontainer">
 	
@@ -42,7 +40,7 @@
 				<table id="example" class="display" style="width: 100%">
 					<thead>
 						<tr>
-							<th>게시글 번호</th><th>작성자</th><th>제목</th><th>내 용</th><th>조회 수</th><th>작성일</th><th>삭제</th>
+							<th>게시글 번호</th><th>작성자</th><th>제목</th><th>내 용</th><th>조회 수</th><th>작성일</th><!-- <th>삭제</th> -->
 						</tr>
 					</thead>
 					<tbody id="listArea">
@@ -67,19 +65,20 @@
 				$.ajax({
 					url : "boardList",
 					success : function(result) {
+						console.log("boardList");
 						var html = "";
-						result.forEach(function(item) {
+						result.forEach(function(item, index) {
 							html += "<tr> <td>"+item.idx+"</td><td>"+item.memId+"</td><td><a style='text-decoration:none;' href = 'view?idx=" + item.idx
-									+ "'>" + item.title + "</a></td><td>"+item.contents+"</td><td>"+item.hits+"</td><td>"+item.writedate+"</td><td><a href='/board/deleteboard/"+item.idx+"' style='text-decoration:none;'>&#10060;</a></td>"
+									+ "'>" + item.title + "</a></td><td>"+item.contents+"</td><td>"+item.hits+"</td><td>"+item.writedate+"</td>"
 						})
 						$("#listArea").append(html)
-						$('#example').DataTable();
+						$('#example').DataTable();	
 					}
 				});
 				$("#deleteBtn").click(function() {
 					location.href = "write";
 				})
 			});
-	
+	/* <td><a href='/board/deleteboard/"+item.idx+"' style='text-decoration:none;'>&#10060;</a></td> */
 </script>
 </html>

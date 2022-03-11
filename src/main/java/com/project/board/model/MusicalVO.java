@@ -10,7 +10,7 @@ public class MusicalVO {
 	private String muscStartDate;
 	private String muscEndDate;
 	private String muscQuote;
-	private int muscReqTime;
+	private Integer muscReqTime;
 	private String muscSynop;
 	private String muscGenre;
 	private String muscImg;
@@ -18,13 +18,41 @@ public class MusicalVO {
 	private String muscInfo_2;
 	private String muscInfo_3;
 	private String muscYoutube;
-	private int musicalVote;
+	private Integer musicalVote;
+	private String location;
 
-	public int getMusicalVote() {
+	public MusicalVO(String muscNo, String muscName, String muscHashtag, String muscPlace, String muscPlaceLink,
+			String muscStartDate, String muscEndDate, String muscQuote, Integer muscReqTime, String muscSynop,
+			String muscGenre, String muscImg, String muscInfo_1, String muscInfo_2, String muscInfo_3,
+			String muscYoutube, Integer musicalVote, String location, String genreNo, String genreName) {
+		super();
+		this.muscNo = muscNo;
+		this.muscName = muscName;
+		this.muscHashtag = muscHashtag;
+		this.muscPlace = muscPlace;
+		this.muscPlaceLink = muscPlaceLink;
+		this.muscStartDate = muscStartDate;
+		this.muscEndDate = muscEndDate;
+		this.muscQuote = muscQuote;
+		this.muscReqTime = muscReqTime;
+		this.muscSynop = muscSynop;
+		this.muscGenre = muscGenre;
+		this.muscImg = muscImg;
+		this.muscInfo_1 = muscInfo_1;
+		this.muscInfo_2 = muscInfo_2;
+		this.muscInfo_3 = muscInfo_3;
+		this.muscYoutube = muscYoutube;
+		this.musicalVote = musicalVote;
+		this.location = location;
+		this.genreNo = genreNo;
+		this.genreName = genreName;
+	}
+
+	public Integer getMusicalVote() {
 		return musicalVote;
 	}
 
-	public void setMusicalVote(int musicalVote) {
+	public void setMusicalVote(Integer musicalVote) {
 		this.musicalVote = musicalVote;
 	}
 
@@ -35,7 +63,7 @@ public class MusicalVO {
 	public MusicalVO(){}
 
 	public MusicalVO(String muscNo, String muscName, String muscHashtag, String muscPlace, String muscPlaceLink,
-			String muscStartDate, String muscEndDate, String muscQuote, int muscReqTime, String muscSynop,
+			String muscStartDate, String muscEndDate, String muscQuote, Integer muscReqTime, String muscSynop,
 			String muscGenre, String muscImg, String muscInfo_1, String muscInfo_2, String muscInfo_3,
 			String muscYoutube, String genreNo, String genreName) {
 		super();
@@ -62,8 +90,16 @@ public class MusicalVO {
 	
 	
 	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public MusicalVO(String muscNo, String muscName, String muscHashtag, String muscPlace, String muscPlaceLink,
-			String muscStartDate, String muscEndDate, String muscQuote, int muscReqTime, String muscSynop,
+			String muscStartDate, String muscEndDate, String muscQuote, Integer muscReqTime, String muscSynop,
 			String muscGenre, String muscImg, String muscInfo_1, String muscInfo_2, String muscInfo_3,
 			String muscYoutube) {
 		super();
@@ -117,7 +153,7 @@ public class MusicalVO {
 		return muscQuote;
 	}
 
-	public int getMuscReqTime() {
+	public Integer getMuscReqTime() {
 		return muscReqTime;
 	}
 
@@ -189,7 +225,7 @@ public class MusicalVO {
 		this.muscQuote = muscQuote;
 	}
 
-	public void setMuscReqTime(int muscReqTime) {
+	public void setMuscReqTime(Integer muscReqTime) {
 		this.muscReqTime = muscReqTime;
 	}
 

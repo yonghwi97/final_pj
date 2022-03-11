@@ -13,6 +13,8 @@
 		<!-- TOP -->
 		<jsp:include page="/WEB-INF/views/layout/top.jsp" flush='true'/>
 		
+		<script src="<c:url value='/js/insertMusc.js'/>"></script>
+		
 		<!-- 삽입란 -->
 		<div id="main" class="insertFrame">
 			<div id="content">
@@ -23,62 +25,62 @@
 					<tr>
 						<th>뮤지컬 번호</th>
 						<td>
-							<input type="text" name="muscNo" id="" maxlength="5" placeholder="지정할 뮤지컬번호를 입력하세요.">
-							<button type="button" class="muscNoCheck" onclick="overlapCheck()">중복확인</button>
+							<input type="number" name="muscNo" id="muscNo" maxlength="5" placeholder="지정할 뮤지컬번호를 입력하세요.">
+							<button id="duplicateCheck" type="button" class="muscNoCheck">중복확인</button>
 						</td>
 					</tr>
 					<tr>
 						<th>뮤지컬 이름</th>
 						<td>
-							<input type="text" name="muscName" id="" maxlength="100" placeholder="등록한 뮤지컬 이름을 모두 입력하세요.">
+							<input type="text" name="muscName" id="muscName" maxlength="100" placeholder="등록한 뮤지컬 이름을 모두 입력하세요.">
 						</td>
 					</tr>
 					<tr>
 						<th>뮤지컬 해시태그</th>
 						<td>
-							<input type="text" name="muscHashtag" id="" maxlength="30" placeholder="#뮤지컬 #해시태그 형식으로 등록하세요.">
+							<input type="text" name="muscHashtag" id="muscHashtag" maxlength="30" placeholder="#뮤지컬 #해시태그 형식으로 등록하세요.">
 						</td>
 					</tr>
 					<tr>
 						<th>공연장 이름</th>
 						<td>
-							<input type="text" name="muscPlace" id="" maxlength="20" placeholder="등록한 뮤지컬의 공연장 이름을 입력하세요.">
+							<input type="text" name="muscPlace" id="muscPlace" maxlength="20" placeholder="등록한 뮤지컬의 공연장 이름을 입력하세요.">
 						</td>
 					</tr>
 					<tr>
 						<th>공연장 지도 링크</th>
 						<td>
-							<input type="text" name="muscPlaceLink" id="" maxlength="300" placeholder="공연장의 네이버 주소링크를 입력하세요.">
+							<input type="text" name="muscPlaceLink" id="muscPlaceLink" maxlength="300" required="required" placeholder="공연장의 네이버 주소링크를 입력하세요.">
 						</td>
 					</tr>
 					<tr>
 						<th>공연 시작일</th>
 						<td>
-							<input type="text" name="muscStartDate" id="" maxlength="10" placeholder="YYYY-MM-DD">
+							<input type="date" name="muscStartDate" id="muscStartDate" maxlength="10" placeholder="YYYY-MM-DD">
 						</td>
 					</tr>
 					<tr>
 						<th>공연 종료일</th>
 						<td>
-							<input type="text" name="muscEndDate" id="" maxlength="10" placeholder="YYYY-MM-DD">
+							<input type="date" name="muscEndDate" id="muscEndDate" maxlength="10" placeholder="YYYY-MM-DD">
 						</td>
 					</tr>
 					<tr>
 						<th>뮤지컬 명대사</th>
 						<td>
-							<input type="text" name="muscQuote" id="" maxlength="30" placeholder="등록할 뮤지컬의 명대사 또는 한마디">
+							<input type="text" name="muscQuote" id="muscQuote" maxlength="30" required="required" placeholder="등록할 뮤지컬의 명대사 또는 한마디">
 						</td>
 					</tr>
 					<tr>
 						<th>총 상영시간</th>
 						<td>
-							<input type="text" name="muscReqTime" id="" placeholder="숫자만 입력해주세요.ex:170분 - > 170">
+							<input type="number" name="muscReqTime" id="muscReqTime" required="required" placeholder="숫자만 입력해주세요.ex:170분 - > 170">
 						</td>
 					</tr>
 					<tr>
 						<th>뮤지컬 시놉시스</th>
 						<td>
-							<input type="text" name="muscSynop" id="" maxlength="300" placeholder="">
+							<input type="text" name="muscSynop" id="muscSynop" maxlength="300" required="required" placeholder="">
 						</td>
 					</tr>
 					<tr>
@@ -99,33 +101,39 @@
 					<tr>
 						<th>뮤지컬 포스터 파일 주소</th>
 						<td>
-							<input type="text" name="muscImg" id="" maxlength="50" placeholder="ex)/폴더명/파일이름.jpg">
-							<button type="button" class="muscNoCheck" onclick="">파일 업로드</button>
+							<input type="text" name="muscImg" id="muscImg" maxlength="50" required="required" placeholder="ex)/폴더명/파일이름.jpg">
+							<!-- <button type="button" class="muscNoCheck" onclick="">파일 업로드</button> -->
 						</td>
 					</tr>
 					<tr>
 						<th>공지사항 파일 주소 1</th>
 						<td>
-							<input type="text" name="muscInfo_1" id="" maxlength="50" placeholder="ex)/폴더명/파일이름.jpg">
-							<button type="button" class="muscNoCheck" onclick="">파일 업로드</button>
+							<input type="text" name="muscInfo_1" id="muscInfo_1" maxlength="50" required="required" placeholder="ex)/폴더명/파일이름.jpg">
+							<!-- <button type="button" class="muscNoCheck" onclick="">파일 업로드</button> -->
 						</td>
 					</tr>
 					<tr>
 						<th>공지사항 파일 주소 2</th>
 						<td>
-							<input type="text" name="muscInfo_2" id="" maxlength="50" placeholder="ex)/폴더명/파일이름.jpg">
+							<input type="text" name="muscInfo_2" id="muscInfo_2" maxlength="50" required="required" placeholder="ex)/폴더명/파일이름.jpg">
 						</td>
 					</tr>
 					<tr>
 						<th>공지사항 파일 주소 3</th>
 						<td>
-							<input type="text" name="muscInfo_3" id="" maxlength="50" placeholder="ex)/폴더명/파일이름.jpg">
+							<input type="text" name="muscInfo_3" id="muscInfo_3" maxlength="50" required="required" placeholder="ex)/폴더명/파일이름.jpg">
 						</td>
 					</tr>
 					<tr>
 						<th>뮤지컬 공식 유튜브 주소</th>
 						<td>
-							<input type="text" name="muscYoutube" id="" maxlength="100" placeholder="ex)https://www.youtube.com">
+							<input type="text" name="muscYoutube" id="muscYoutube" maxlength="100" required="required" placeholder="ex)https://www.youtube.com">
+						</td>
+					</tr>
+					<tr>
+						<th>공연 지역 </th>
+						<td>
+							<input type="text" name="location" id="location" required="required" maxlength="10" placeholder="ex)서울">
 						</td>
 					</tr>
 				</table>

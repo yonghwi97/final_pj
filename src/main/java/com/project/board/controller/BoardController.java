@@ -3,6 +3,7 @@ package com.project.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,14 +22,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.board.model.BoardVO;
+import com.project.board.model.MemberVO;
 import com.project.board.model.ReplyVO;
 import com.project.board.service.BoardService;
+import com.project.board.service.MemberService;
 
 @Controller
 public class BoardController {
 	 	@Autowired
 	    private BoardService s;
 		private File none;
+		@Autowired
+	    MemberService memberService;
 		
 	    @RequestMapping(value="/board", method=RequestMethod.GET)
 	    public String board() {
@@ -89,7 +94,7 @@ public class BoardController {
 	            @RequestParam("contents")String contents, String hits,Date writedate,String memId) throws IllegalStateException, IOException {
 	        
 	    	//1. 파일 저장 경로 설정 : 실제 서비스 되는 위치(프로젝트 외부에 저장)
-			String uploadPath="C:/springWorkspace/upload/";
+			String uploadPath="/upload/";
 			
 			//2. 원본 파일 이름 알아오기
 			String originalFileName=file.getOriginalFilename();
@@ -106,7 +111,7 @@ public class BoardController {
 			System.out.println(b);
 			s.addBoard(b);
 	        
-	        return "board/board";
+	        return "redirect:./board";
 	    }
 	    
 		/*
@@ -125,7 +130,18 @@ public class BoardController {
 		 */
 
 	    @RequestMapping(value="/view", method=RequestMethod.GET)
-	    public String view() {
+	    public String view(Model model,HttpSession session) {
+			/*
+			 * ArrayList<MemberVO> memberList = memberService.getAllMember();
+			 * model.addAttribute("memberList", memberList);
+			 */
+	    	
+	        String sid=(String)session.getAttribute("sid1");
+	        System.out.println(sid);
+	        MemberVO memberList = memberService.getMember(sid);
+			model.addAttribute("memberList", memberList);
+	        
+	        
 	        return "board/view";
 	    }
 		
@@ -178,11 +194,28 @@ public class BoardController {
 	    
 	    
 	    @RequestMapping("/board/update/{idx}")
-		public String updateBoardForm(@PathVariable int idx, Model model) {
+		public String updateBoardForm(@PathVariable int idx, Model model,HttpSession session, HttpServletResponse write) throws IOException {
 			BoardVO board = s.detailViewBoard(idx);
 			model.addAttribute("board", board);
-			return "board/update";
-		}
+			
+			
+			String memId = (String) session.getAttribute("sid1");
+			if (memId == null ) {
+				write.setContentType("text/html; charset=UTF-8");
+				PrintWriter out_write = write.getWriter();
+				out_write.println("<script>alert('권한이 없습니다.'); location.href='/loginForm';</script>");
+				out_write.flush();
+
+				return "board/board";
+
+			} else {
+				// 로그인이 되어있는 경우
+				return "board/update";
+			}
+	    
+	    
+	    
+	    }
 	    
 	    @RequestMapping("/board/updateBoard")
 		public String detailViewBoard(BoardVO board,@RequestParam("file") MultipartFile file,Model model) throws IllegalStateException, IOException {

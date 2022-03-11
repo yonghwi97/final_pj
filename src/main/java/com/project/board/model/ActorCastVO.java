@@ -1,7 +1,6 @@
 package com.project.board.model;
 
 public class ActorCastVO {
-	;
 	private String actorName;
 	private String actorProfile;
 	private String roleName;
@@ -14,6 +13,9 @@ public class ActorCastVO {
 		this.actorProfile = actorProfile;
 		this.roleName = roleName;
 	}
+	
+	
+	
 
 	public String getActorName() {
 		return actorName;

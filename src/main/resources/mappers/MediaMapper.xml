@@ -35,7 +35,18 @@
         UPDATE actor SET actorVote = actorVote + 1
         WHERE actorNo = #{actorNo}
     </update>
-
+    
+    <update id="voteCount">
+        UPDATE member SET voteA = voteA - 1
+        WHERE memId = #{memId}
+    </update>
+    
+    <update id="voteCountB">
+        UPDATE member SET voteB = voteB - 1
+        WHERE memId = #{memId}
+    </update>
+	
+	
 
 </mapper>
   

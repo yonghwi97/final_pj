@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.project.board.dao.ICalendarDAO">
 
     <resultMap id="calendarResult" type="com.project.board.model.CalendarVO">
 
-        <result property="calNo" column="calNo" />
-        <result property="calTitle" column="calTitle" />
-        <result property="calDetail" column="calDetail" />
-        <result property="calStart" column="calStart" />
-        <result property="calEnd" column="calEnd" />
-        <result property="calURL" column="calURL" />
+        <result property="calNo" column="calNo"/>
+        <result property="calTitle" column="calTitle"/>
+        <result property="calDetail" column="calDetail"/>
+        <result property="calStart" column="calStart"/>
+        <result property="calEnd" column="calEnd"/>
+        <result property="calURL" column="calURL"/>
     </resultMap>
 
 
@@ -23,9 +23,27 @@
 
     <!-- 전체 일정 출력 -->
     <select id="calenList" resultType="Map" parameterType="string">
-        SELECT * FROM calendar
+        SELECT *
+        FROM calendar
     </select>
 
-    
+    <select id="getAllPlan" resultType="com.project.board.model.CalendarVO">
+        SELECT *
+        FROM calendar
+    </select>
+
+    <select id="detailPlan" resultType="com.project.board.model.CalendarVO">
+        SELECT *
+        FROM calendar
+        WHERE calNo = #{calNo}
+    </select>
+
+    <update id="updateSchedule" parameterType="com.project.board.model.CalendarVO">
+        UPDATE calendar SET calTitle  = #{calTitle}, calDetail = #{calDetail}, calStart = #{calStart}, calURL = #{calURL} WHERE calNo = #{calNo}
+    </update>
+
+    <insert id="insertSchedul9e" parameterType="com.project.board.model.CalendarVO">
+        insert into calendar(calTitle, calDetail, calStart, calEnd, calURL) values(#{calTitle}, #{calDetail}, #{calStart}, #{calEnd}, #{calURL})
+    </insert>
 </mapper>
   

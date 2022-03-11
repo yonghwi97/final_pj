@@ -1,34 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper
- PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.board.dao.IMemberDAO">
-		<resultMap id="MemberResult" type="com.project.board.model.MemberVO">
-			<result property="memId" column="memId"/>
-			<result property="memPw" column="memPw"/>
-			<result property="memName" column="memName"/>
-			<result property="memEmail" column="memEmail"/>
-			<result property="memPhone" column="memPhone"/>
-			<result property="memAddress" column="memAddress"/>
-			<result property="memAddressDetail" column="memAddressDetail"/>
-			<result property="genre" column="genre"/>
-		</resultMap>
-		
-		<!-- 로그인 -->
-		<select id="login" resultMap="MemberResult" parameterType="hashmap">
-				SELECT * FROM member WHERE memId=#{id} AND memPw=#{pw}
-		</select>
-		
-		<!-- 회원 아이디 중복 조회 -->
-		<select id="memIdCheck" resultType="string" parameterType="string">
-			SELECT memId FROM member WHERE memId=#{memId}
-		</select>
-		
-		<!-- 회원가입 -->
-		<insert id="signUp" parameterType="com.project.board.model.MemberVO">
-			  INSERT INTO member (memId, memPw, memName, memEmail, memPhone, memAddress, memAddressDetail, genre) VALUES(#{memId}, #{memPw}, #{memName}, #{memEmail}, #{memPhone}, #{memAddress}, #{memAddressDetail}, #{genre}) 
-		</insert>
-	
+    <resultMap id="MemberResult" type="com.project.board.model.MemberVO">
+        <result property="memId" column="memId"/>
+        <result property="memPw" column="memPw"/>
+        <result property="memName" column="memName"/>
+        <result property="memEmail" column="memEmail"/>
+        <result property="memPhone" column="memPhone"/>
+        <result property="memAddress" column="memAddress"/>
+        <result property="memAddressDetail" column="memAddressDetail"/>
+        <result property="genre" column="genre"/>
+    </resultMap>
+
+    <!-- 로그인 -->
+    <select id="login" resultMap="MemberResult" parameterType="hashmap">
+        SELECT *
+        FROM member
+        WHERE memId = #{id}
+          AND memPw = #{pw}
+    </select>
+
+    <!-- 회원 아이디 중복 조회 -->
+    <select id="memIdCheck" resultType="string" parameterType="string">
+        SELECT memId
+        FROM member
+        WHERE memId = #{memId}
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="signUp" parameterType="com.project.board.model.MemberVO">
+        INSERT INTO member (memId, memPw, memName, memEmail, memPhone, memAddress, memAddressDetail, genre)
+        VALUES (#{memId}, #{memPw}, #{memName}, #{memEmail}, #{memPhone}, #{memAddress}, #{memAddressDetail}, #{genre})
+    </insert>
+
+    <select id="getAllMember" resultType="com.project.board.model.MemberVO" parameterType="string">
+        select *
+        from member
+        order by memId desc
+    </select>
+
+    <!-- 멤버 정보 수정 (레젤 등) -->
+    <update id="updateMember" parameterType="com.project.board.model.MusicalVO">
+        UPDATE member SET memId = #{memId}, memPw = #{memPw}, memEmail = #{memEmail}, memPhone = #{memPhone}, genre = #{genre}
+    </update>
+
+    <select id="getMember" resultType="com.project.board.model.MemberVO" parameterType="string">
+       	select * from member WHERE memId=#{memId}
+    </select>
 </mapper>
